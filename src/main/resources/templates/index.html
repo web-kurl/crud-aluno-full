@@ -1,0 +1,122 @@
+<!doctype html>
+<html ng-app="app">
+<head>
+	<meta charset="UTF-8"/>
+	<title>My AngularJS App</title>
+	
+	<!-- Angular -->
+	<script src="./lib/angular/angular.js"></script>
+	
+	<!-- BootStrap -->
+	<link rel="stylesheet" href="lib/bootstrap/bootstrap.css"/>
+	
+	<!-- Style -->
+	<link rel="stylesheet" href="css/app.css"/>
+	
+	
+	<!-- Scripts -->	
+	<script src="./js/app.js"></script>
+	
+</head>
+
+<body ng-controller="alunoController">
+	<div class="container">
+		<div class="jumbotron">
+		    <nav>
+		        <ul class="nav nav-pills pull-right">
+		            <li role="presentation" ng-class="{'active': tab==1}">
+		                <a href="" ng-click="tab=1">Cadastro</a>
+		            </li>
+		            <li role="presentation" ng-class="{'active': tab==2}">
+		                <a href="" ng-click="tab=2">Lista de Alunos</a>
+		            </li>
+		        </ul>
+		    </nav>
+		    <h3 class="text-muted">Projeto de Cadastro de Alunos</h3>
+		    <hr/>
+		    
+		    <div class="tabs-container">
+                <!-- Tela Cadastro -->
+                <div class="tab-content" ng-show="tab == 1">
+                    
+                    <!-- Nome -->
+                    <div class="form-group">
+                        <label for="nome" class="col-2 col-form-label">Nome: </label>
+                        <div class="col-10">
+                            <input class="form-control" type="text" id="nome" ng-model="aluno.nome"/>
+                        </div>
+                    </div>
+                    
+                    <!-- RA -->
+                    <div class="form-group">
+                        <label for="ra" class="col-2 col-form-label">RA: </label>
+                        <div class="col-10">
+                            <input class="form-control" type="text" id="ra" ng-model="aluno.ra"/>
+                        </div>
+                    </div>
+                    
+                    <!-- Sexo -->
+                    <div class="form-group form-check form-check-inline">
+                        <label for="sexoRadio">Sexo: </label>
+                        <label class="form-check-label">
+                            <input class="form-check-input" id="idSexoMasculino" type="radio" name="sexoRadio" ng-model="aluno.sexo" value="Masculino"/>Masculino
+                        </label>
+                        <label class="form-check-label">
+                            <input class="form-check-input" id="idSexoFeminino" type="radio" name="sexoRadio" ng-model="aluno.sexo" value="Feminino"/>Feminino
+                        </label>
+                    </div>
+                    
+                    <!-- Curso -->
+                    <div class="form-group">
+                        <label for="cursoSelect">Curso: </label>
+                        <select class="form-control" id="cursoSelect" ng-model="aluno.curso">                        
+                            <option>Analise e Desenvolvimento de Sistemas</option>
+                            <option>Ciencias da Computacao</option>
+                            <option>Engenharia de Software</option>
+                            <option>Processamento de Dados</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Data Matricula -->
+                    <div class="form-group">
+                        <label for="dataMatricula" class="col-2 col-form-label">Data Matricula: </label>
+                        <div class="col-10">
+                            <input class="form-control" type="date" id="dataMatricula" ng-model="aluno.dataMatricula"/>
+                        </div>
+                    </div>
+                    
+				</div><!-- tab-content1 -->
+				
+				<div class="tab-content" ng-show="tab == 2">
+                    <table class="table">
+                        <tr>
+                        	<th></th>
+                            <th>Nome</th>
+                            <th>RA</th>
+                            <th>Sexo</th>
+                            <th>Curso</th>
+                            <th>Data Matricula</th>                            
+                        </tr>
+                        <tr ng-repeat="aluno in alunos" ng-class="{'selecionado': aluno.selecionado}" ng-dblclick="doubleClick(aluno)">
+                        	<td><input type="checkbox" ng-model="aluno.selecionado"/></td>
+                            <td>{{aluno.nome}}</td>
+                            <td>{{aluno.ra}}</td>
+                            <td>{{aluno.sexo}}</td>
+                            <td>{{aluno.curso}}</td>
+                            <td>{{aluno.dataMatricula|date:'dd/MM/yyyy'}}</td>                            
+                        </tr>
+                    </table>
+                </div><!-- tab-content2 -->                
+			</div><!-- tab-container -->
+			<!-- Botoes -->
+            <div class="form-inline text-center">
+                <button type="submit" class="btn btn-primary" ng-click="btnDeletar(alunos)">Deletar</button>
+                <button type="submit" class="btn btn-primary" ng-click="btnLimpar()">Limpar</button>
+                <button type="submit" class="btn btn-primary" ng-click="btnProcurar(aluno)">Procurar</button>
+                <button type="submit" class="btn btn-primary" ng-click="btnSalvar(aluno)">Salvar</button>
+            </div>
+		</div><!-- jumbotron -->
+	</div><!-- main container -->
+           
+</body>
+</html>

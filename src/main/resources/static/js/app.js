@@ -5,7 +5,7 @@ angular.module("app", [])
 	    $scope.tab = 1;
 	    
 	    $scope.carregarAluno = function(){
-	    	$http({	method: 'GET',url: 'http://localhost:8080/alunos'})
+	    	$http({	method: 'GET',url: 'https://app-crudaluno.herokuapp.com/alunos'})
 	    	.then(function (response) {
 					$scope.alunos = response.data;
 					console.log(response.data);
@@ -18,7 +18,7 @@ angular.module("app", [])
 	    
 	    $scope.btnSalvar = function(aluno){
 	    	if(aluno.id > 0){
-				$http({method:'POST', url:'http://localhost:8080/alunos', data:angular.copy(aluno)})
+				$http({method:'POST', url:'https://app-crudaluno.herokuapp.com/alunos', data:angular.copy(aluno)})
 				.then (
 				function successCallBack(response){
 					$scope.alunos.push(aluno);
@@ -32,7 +32,7 @@ angular.module("app", [])
 					console.log(response.status);
 				});
 	    	} else {
-	    		$http({method:'PUT', url:'http://localhost:8080/alunos', data:angular.copy(aluno)})
+	    		$http({method:'PUT', url:'https://app-crudaluno.herokuapp.com/alunos', data:angular.copy(aluno)})
 				.then (
 				function successCallBack(response){
 					for (var i = 0; i<$scope.alunos.length; i++){
@@ -56,7 +56,7 @@ angular.module("app", [])
 			$scope.count = 0;
 	    	$scope.alunos = alunos.filter(function(aluno){
 	    		if (aluno.selecionado) {
-	    			$http({method:'DELETE', url:'http://localhost:8080/alunos/' + aluno.id})
+	    			$http({method:'DELETE', url:'https://app-crudaluno.herokuapp.com/alunos/' + aluno.id})
 	    			.then (
 	    			function successCallBack(response){
 	    				console.log('Aluno com id=' + aluno.id + ' e nome de ' + aluno.nome + ' removido com sucesso do banco de dados');

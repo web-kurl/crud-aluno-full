@@ -28,8 +28,8 @@ angular.module("app", [])
 			        $scope.tab = 2;						
 				}
 				,function errorCallBack(response){
-					console.log(response.data);
 					console.log(response.status);
+					console.log(response.data);					
 				});
 	    	} else {
 	    		$http({method:'PUT', url:'https://app-crudaluno.herokuapp.com/alunos', data:angular.copy(aluno)})
@@ -45,8 +45,8 @@ angular.module("app", [])
 			        $scope.tab = 2;						
 				}
 				,function errorCallBack(response){
-					console.log(response.data);
 					console.log(response.status);
+					console.log(response.data);					
 				});
 	    		
 	    	}
@@ -62,8 +62,8 @@ angular.module("app", [])
 	    				console.log('Aluno com id=' + aluno.id + ' e nome de ' + aluno.nome + ' removido com sucesso do banco de dados');
 	    			}
 	    			,function errorCallBack(response){
-	    				console.log(response.data);
-	    				console.log(response.status);
+						console.log(response.status);
+						console.log(response.data);	    				
 	    			});	    				    				    			       
 	    		}else
 	    			return aluno;
